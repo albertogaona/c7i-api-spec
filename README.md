@@ -710,7 +710,8 @@ Respuesta:
         "priority": 4,
         "lat": 9.232332334,
         "lng": -8.2233022922,
-        "state": "Asignado",
+        "state": 10,
+        "state_name": "Asignado",
         "created": "2026-07-22T16:09:11Z",
         "summary": "Acudir a sitio para apoyo a bomberos",
         "tasks": [
@@ -727,7 +728,7 @@ Respuesta:
             "generator": "IA"
           }          
         ],
-        "selectableStates": [
+        "selectable_states": [
           {
             "id": 10,
             "name": "En Ruta"
@@ -779,7 +780,8 @@ Payload:
   "lat": 19.2233244,
   "lng": -99.22301992,
   "epoch": 1784740445,
-  "accuracy": 4
+  "accuracy": 4,
+  "tainted": false
 }
 ```
 
@@ -788,5 +790,95 @@ Respuesta:
 {
   "code": 200
 }
+``` 
 
+El `epoch` corresponde al momento en el que se adquiere la ubicación. 
+
+La `accuracy` es la exactitud en metros (int).
+
+`Tainted` es true si la ubicación es simulada.
+
+
+| `code` | Significado |
+|---:|---|
+| `200` | Ack recibido |
+| `401` | Teléfono no registrado o bloqueado o token Firebase inválido |
+
+
+## 24.5 Notify
+Notifica acciones y reportes de actuación y respuesta. Puede contener documentos (solo un documento por notificación). La notificación es geolocalizada.
+
+```text
+{base_url}/{version}/notify
+```
+
+Método: POST
+
+Payload:
+```json
+{
+  "description": "Se escuchan disparos lejanos",
+  "document64": null,
+  "mime_type": null,
+  "lat": 19.2233244,
+  "lng": -99.22301992,
+  "epoch": 1784740445,
+  "accuracy": 4,
+  "tainted": false
+}
+```
+
+Respuesta: 
+```json
+{
+  "code": 200
+}
+``` 
+
+El documento se sube en base64 indicando el mime_type. Mime type puede ser 
+
+```text
+image/jpeg
+image/png
+video/mp4
+audio/mp4
+```
+
+
+| `code` | Significado |
+|---:|---|
+| `200` | Ack recibido |
+| `401` | Teléfono no registrado o bloqueado o token Firebase inválido |
+
+## 24.6 State change
+
+Notifica un cambio de estado seleccionado por el usuario (debe se uno de los selectable states).
+
+```text
+{base_url}/{version}/stateChange
+```
+
+Método: POST
+
+Payload:
+```json
+{
+  "new_state": 10
+}
+```
+
+Respuesta: 
+```json
+{
+  "code": 200,
+  "data": {
+    "state": 10
+  }
+}
+``` 
+
+| `code` | Significado |
+|---:|---|
+| `200` | Ack recibido |
+| `401` | Teléfono no registrado o bloqueado o token Firebase inválido |
 
