@@ -646,7 +646,10 @@ Payload:
 Respuesta: 
 ```json
 {
-  "code": 200
+  "code": 200,
+  "data": {
+    "name": "Display name"
+  }
 }
 ```
 
