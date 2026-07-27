@@ -639,7 +639,6 @@ Método: POST
 Payload:
 ```json
 {
-  "phone_number": "+524454455454"
 }
 ```
 
@@ -670,7 +669,7 @@ Método: POST
 Payload:
 ```json
 {
-  "message_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+  "message_id": 1233343
 }
 ```
 
