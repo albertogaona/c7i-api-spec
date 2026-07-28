@@ -819,6 +819,7 @@ Método: POST
 Payload:
 ```json
 {
+  "ticket_id": 1233034993,
   "description": "Se escuchan disparos lejanos",
   "document64": null,
   "mime_type": null,
